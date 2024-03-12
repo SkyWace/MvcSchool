@@ -1,0 +1,48 @@
+﻿@model MVC.Views.Home.Ville
+
+<h2>Détails de la Ville</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom de la Ville</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.Nom_Ville</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Ajouter une Nouvelle Ville</h2>
+
+<form asp-action="Create" asp-controller="Villes" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Nom_Ville" class="control-label"></label>
+        <input asp-for="Nom_Ville" class="form-control" />
+        <span asp-validation-for="Nom_Ville" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Id" class="control-label"></label>
+        <input asp-for="Id" class="form-control" />
+        <span asp-validation-for="Id" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>
+
+<h2>Supprimer une Ville</h2>
+
+<form asp-action="Delete" asp-controller="Villes" method="post">
+    <div class="form-group">
+        <label for="idToDelete" class="control-label">ID de la Ville à Supprimer:</label>
+        <input type="number" id="idToDelete" name="id" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-danger">Supprimer</button>
+</form>

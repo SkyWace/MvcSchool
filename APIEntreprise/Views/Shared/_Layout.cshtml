@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MVC</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Salaries" asp-action="Check">Recherché</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark nav-link-admin" asp-area="" asp-controller="Salaries" asp-action="Index">Admin</a>
+                        </li>
+
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script>// Fonction pour afficher la pop-up avec le champ de saisie du code secret
+        function showPopup() {
+            // Demande à l'utilisateur de saisir le code secret
+            var secretCode = prompt("Veuillez saisir le code secret pour accéder à la page Admin:");
+
+            // Vérifie si le code secret est correct
+            if (secretCode === "Simon") { // Remplacez "votre-code-secret" par le code secret réel
+                // Si le code secret est correct, redirige l'utilisateur vers la page Admin
+                window.location.href = "/Salaries/Index";
+            } else {
+                // Si le code secret est incorrect, affiche un message d'erreur
+                alert("Code secret incorrect. Vous n'avez pas accès à la page Admin.");
+            }
+        }
+
+        // Écouteur d'événement pour le clic sur le lien "Admin"
+        document.querySelector('.nav-link-admin').addEventListener('click', function (event) {
+            event.preventDefault(); // Empêche le comportement par défaut du lien
+            showPopup(); // Affiche la pop-up avec le champ de saisie du code secret
+        });</script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
